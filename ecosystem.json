@@ -1,0 +1,24 @@
+{
+  "apps": [
+    {
+      "name": (function() {
+        var arg, name = "top-down-shooter-server", env = ["staging"];
+        process.argv.forEach(function(val, index) {
+          if (val === "--env") arg = index + 1;
+        });
+        if (arg && env.indexOf(process.argv[arg]) !== -1) name += "-" + process.argv[arg];
+        return name;
+      })(),
+      "script": "app/bin/server.js",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "env_staging": {
+        "NODE_ENV": "staging"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
